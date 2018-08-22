@@ -8,7 +8,7 @@
 
 import UIKit
 
-class signUpVC: UIViewController {
+class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // profile image
     @IBOutlet weak var avaImg: UIImageView!
@@ -16,6 +16,7 @@ class signUpVC: UIViewController {
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
+    @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var fullbaneTxt: UITextField!
     @IBOutlet weak var bioTxt: UITextField!
     @IBOutlet weak var webTxt: UITextField!
@@ -44,10 +45,35 @@ class signUpVC: UIViewController {
        
         // declare hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap))
-
         hideTap.numberOfTapsRequired = 1
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
+        
+        // round ava
+        avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
+        avaImg.clipsToBounds = true
+        
+        // declare select image tap
+        let avaTap = UITapGestureRecognizer (target: self, action: #selector(loadImg))
+        avaTap.numberOfTapsRequired = 1
+        avaImg.isUserInteractionEnabled = true
+        avaImg.addGestureRecognizer(avaTap)
+
+        
+    }
+    
+    // call picker to select image
+    @objc func loadImg(recoginizer:UITapGestureRecognizer){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        avaImg.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
     }
     // hide keyboard if tapped
     @objc func hideKeyboardTap(recoginizer:UITapGestureRecognizer){
@@ -72,6 +98,25 @@ class signUpVC: UIViewController {
     //clicked sign up
     @IBAction func signUpBtn_click(_ sender: AnyObject) {
         print("sign up pressed")
+        // dismiss keyboard
+        self.view.endEditing(true)
+        // if field is empty
+        if (usernameTxt.text!.isEmpty || passwordTxt.text!.isEmpty || repeatPassword.text!.isEmpty || fullbaneTxt.text!.isEmpty || bioTxt.text!.isEmpty || webTxt.text!.isEmpty){
+            // alart message
+            let alart = UIAlertController(title: "PLEASE", message: "fill in all fileds", preferredStyle: UIAlertControllerStyle.alert)
+            let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            alart.addAction(ok)
+            self.present(alart, animated: true, completion: nil)
+        }
+        // if passwords do not match
+        if passwordTxt.text != repeatPassword.text {
+            // alart message
+            let alart = UIAlertController(title: "PASSWORDS", message: "do not match", preferredStyle: UIAlertControllerStyle.alert)
+            let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            alart.addAction(ok)
+            self.present(alart, animated: true, completion: nil)
+            
+        }
     }
     //clicked cancel
     @IBAction func cancelBtn_click(_ sender: AnyObject) {

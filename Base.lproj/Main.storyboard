@@ -108,14 +108,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bio" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" id="j7I-og-Poh">
-                                        <rect key="frame" x="8" y="364" width="359" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="web" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" id="HGm-3E-FFd">
-                                        <rect key="frame" x="8" y="402" width="359" height="30"/>
+                                        <rect key="frame" x="8" y="371" width="359" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -129,7 +122,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="fullname" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" id="TAC-f7-h65">
-                                        <rect key="frame" x="8" y="326" width="359" height="30"/>
+                                        <rect key="frame" x="8" y="333" width="359" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -159,6 +152,20 @@
                                             <action selector="cancelBtn_click:" destination="2xB-OY-vuM" eventType="touchUpInside" id="B6B-sn-rO0"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" id="CTc-cD-wpr">
+                                        <rect key="frame" x="8" y="295" width="359" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="web" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" id="HGm-3E-FFd">
+                                        <rect key="frame" x="8" y="409" width="359" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -168,6 +175,7 @@
                         <outlet property="avaImg" destination="hUq-Ek-28a" id="QVw-8j-d4K"/>
                         <outlet property="bioTxt" destination="j7I-og-Poh" id="dFQ-WA-N3r"/>
                         <outlet property="cancelBtn" destination="izQ-XW-wg2" id="lGp-ZW-EuX"/>
+                        <outlet property="emailTxt" destination="CTc-cD-wpr" id="UKd-np-9PQ"/>
                         <outlet property="fullbaneTxt" destination="TAC-f7-h65" id="3S1-3a-ZMi"/>
                         <outlet property="passwordTxt" destination="z68-Zl-ciJ" id="etH-l5-kod"/>
                         <outlet property="repeatPassword" destination="PoU-xB-U0V" id="frZ-yu-QK7"/>
