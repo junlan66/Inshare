@@ -39,9 +39,9 @@ class signUpVC: UIViewController {
 
         //check notification if keyboard is shown or not
         
-        NotificationCenter.default.addObserver(self, selector: Selector(("showKeyboard:")), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: Selector(("hideKeyboard:")), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: .UIKeyboardWillHide, object: nil)
+       
         // declare hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: Selector(("hideKeyboardTap")))
         hideTap.numberOfTapsRequired = 1
@@ -53,19 +53,19 @@ class signUpVC: UIViewController {
         self.view.endEditing(true)
     }
     //show keyboard function
-    func showKeyboard(notification: NSNotification){
+    @objc func showKeyboard(_ notification: NSNotification){
         //define keyboard size
-        keyboard = ((notification.userInfo?[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue)!
+        keyboard = ((notification.userInfo?[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue)! // diff
         UIView.animate(withDuration: 0.4){ ()->Void in
             self.scrollView.frame.size.height = self.scrollViewHeight - self.keyboard.height
         }
     }
     //hide keyboard functtion
-    func hideKeyboard(notification: NSNotification){
+    @objc func hideKeyboard(_ notification: NSNotification){
         //move down UI
-        UIView.animate(withDuration: 0.4, animations: {
-            self.scrollView.frame.size.height = self.scrollViewHeight - self.keyboard.height
-        })
+        UIView.animate(withDuration: 0.4) { ()->Void in
+            self.scrollView.frame.size.height = self.view.frame.height
+        }
     }
     
     //clicked sign up
@@ -76,5 +76,4 @@ class signUpVC: UIViewController {
     @IBAction func cancelBtn_click(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
