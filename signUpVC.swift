@@ -33,7 +33,7 @@ class signUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // scrollview frame size
-        scrollView.frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.frame.width, height: self.view.frame.width)) //diff
+        scrollView.frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height)) //diff
         scrollView.contentSize.height = self.view.frame.height
         scrollViewHeight = scrollView.frame.size.height
 
