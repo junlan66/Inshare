@@ -43,13 +43,14 @@ class signUpVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: .UIKeyboardWillHide, object: nil)
        
         // declare hide keyboard tap
-        let hideTap = UITapGestureRecognizer(target: self, action: Selector(("hideKeyboardTap")))
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap))
+
         hideTap.numberOfTapsRequired = 1
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
     }
     // hide keyboard if tapped
-    func hideKeyboardTap(recoginizer:UITapGestureRecognizer){
+    @objc func hideKeyboardTap(recoginizer:UITapGestureRecognizer){
         self.view.endEditing(true)
     }
     //show keyboard function
