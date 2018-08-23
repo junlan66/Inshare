@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -115,8 +116,32 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
             alart.addAction(ok)
             self.present(alart, animated: true, completion: nil)
-            
         }
+        //send data to server to relate column
+        let user = PFUser()
+        user.username = usernameTxt.text?.lowercased()
+        user.email = emailTxt.text?.lowercased()
+        user.password = passwordTxt.text?.lowercased()
+        user["fullname"] = fullbaneTxt.text?.lowercased()
+        user["bio"] = bioTxt.text?.lowercased()
+        user["web"] = webTxt.text?.lowercased()
+        // it's gonna be assigned in edit profile
+        user["tel"] = ""
+        user["gender"] = ""
+        //convert our image for sending to server
+        let avaData = UIImageJPEGRepresentation(avaImg.image!, 0.5)
+        let avaFile = PFFile(name: "ava.jpg", data: avaData!)
+        user["ava"] = avaFile
+        
+        //save data in server
+        user.signUpInBackground { (success: Bool, error: Error?) -> Void in
+            if success{
+                print ("registered")
+            } else{
+                print ("error?.localizedDescription")
+            }
+        }
+        
     }
     //clicked cancel
     @IBAction func cancelBtn_click(_ sender: AnyObject) {
