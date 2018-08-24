@@ -137,10 +137,15 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         user.signUpInBackground { (success: Bool, error: Error?) -> Void in
             if success{
                 print ("registered")
+                // saved logged user's information
+                UserDefaults.standard.set(user.username, forKey: "username") //diff
+                UserDefaults.standard.synchronize() //diff
+                
             } else{
                 print ("error?.localizedDescription")
             }
         }
+        
         
     }
     //clicked cancel
