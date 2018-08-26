@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+
 
 class signInVC: UIViewController {
     //textfield
@@ -23,25 +25,28 @@ class signInVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     //clicked sign in button
     @IBAction func signInBtn_click(_ sender: AnyObject) {
         print("sign in pressed")
+        // if textfile are empty
+        if usernameTxt.text!.isEmpty || passwordTxt.text!.isEmpty{
+            // show alart message
+            let alart = UIAlertController(title: "please", message: "fill in field", preferredStyle: UIAlertControllerStyle.alert)
+            alart.addAction(OK)
+            self.present(alart, animated: true, completion:nil)
+        }
+        // login function
+        PFUser.logInWithUsername(inBackground: usernameTxt.text!, password:passwordTxt.text!) { (user: PFUser?, error: Error?) -> Void in
+
+            if error == nil{
+                // remember user or save in memeory did the user log in or not
+                UserDefaults.standard.set(user!.username, forKey: "username") //diff
+                UserDefaults.standard.synchronize() //diff
+                
+                // call login function from AppDelegate.swift class
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.login()
+            }
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

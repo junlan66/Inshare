@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ParseMutableClientConfigurattion.server = "http://inshare.herokuapp.com/parse"
         }
         Parse.initialize(with: parseConfig)
+        // call login function
+        login()
         return true
     }
 

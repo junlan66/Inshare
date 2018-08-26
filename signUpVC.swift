@@ -140,7 +140,9 @@ class signUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 // saved logged user's information
                 UserDefaults.standard.set(user.username, forKey: "username") //diff
                 UserDefaults.standard.synchronize() //diff
-                
+                // call login function from appDelegate class
+                let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.login()
             } else{
                 print ("error?.localizedDescription")
             }
