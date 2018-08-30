@@ -217,6 +217,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="cancelBtn_click:" destination="QXD-qq-4jG" eventType="touchUpInside" id="x6H-Iq-XCa"/>
                                     <action selector="signInBtn_click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ya3-sY-00V"/>
                                 </connections>
                             </button>
@@ -230,12 +231,18 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="restBtn_click:" destination="QXD-qq-4jG" eventType="touchUpInside" id="UyJ-VS-Ww6"/>
                                     <action selector="signInBtn_click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wU8-lv-2lW"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="CancelBtn" destination="Rct-Vd-y3r" id="O04-pS-ycH"/>
+                        <outlet property="emailTxt" destination="vFL-FW-Osn" id="e9U-9L-xF3"/>
+                        <outlet property="resetBtn" destination="Gnb-mG-cBW" id="xsS-XC-9HU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lbh-l1-Qwz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -32,7 +32,8 @@ class signInVC: UIViewController {
         if usernameTxt.text!.isEmpty || passwordTxt.text!.isEmpty{
             // show alart message
             let alart = UIAlertController(title: "please", message: "fill in field", preferredStyle: UIAlertControllerStyle.alert)
-            alart.addAction(OK)
+            let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            alart.addAction(ok)
             self.present(alart, animated: true, completion:nil)
         }
         // login function

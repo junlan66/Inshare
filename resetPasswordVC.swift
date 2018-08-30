@@ -7,29 +7,41 @@
 //
 
 import UIKit
+import Parse
 
 class resetPasswordVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var resetBtn: UIButton!
+    @IBOutlet weak var CancelBtn: UIButton!
+    // clicked rest button
+    @IBAction func restBtn_click(_ sender: AnyObject) {
+        // hide keyboard
+        self.view.endEditing(true)
+        //show alert message
+        if emailTxt.text!.isEmpty{
+            // show alart message
+            let alart = UIAlertController(title: "Email field", message: "is empty", preferredStyle: UIAlertControllerStyle.alert)
+            let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            alart.addAction(ok)
+            self.present(alart, animated: true, completion: nil)
+        }
+        // request for resettting password
+        PFUser.requestPasswordResetForEmail(inBackground: emailTxt.text!)  { (success, error) -> Void in // success / error ???
+            if success {
+                let alart = UIAlertController(title: "Email for reseting password", message: "has be sent to textted email", preferredStyle: UIAlertControllerStyle.alert)
+                let ok = UIAlertAction (title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) -> Void in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alart.addAction(ok)
+                self.present(alart, animated: true, completion: nil)
+            } else{
+                print(error?.localizedDescription as Any)
+            }
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+   
+    // clicked cancel button
+    @IBAction func cancelBtn_click(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
